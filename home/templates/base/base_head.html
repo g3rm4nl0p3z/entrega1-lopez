@@ -1,15 +1,17 @@
 {% extends './base.html' %}
 
 {% block bloque_header %}
-    <header class="masthead">
-        <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    <h1 class="text-center text-white display-4 fst-italic">
-                        {% block bloque_h1_header %}
-                        {% endblock bloque_h1_header %}
-                    </h1>
-                </div>
+    <header class="bg-dark py-4">
+        <div class="container px-3 px-lg-4 my-4">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">
+                    {% block bloque_h1_header %}
+                    {% endblock bloque_h1_header %}
+                </h1>
+                <p class="lead fw-normal text-white-50 mb-0">
+                    {% block bloque_sub_header %}
+                    {% endblock bloque_sub_header %}
+                </p>
             </div>
         </div>
     </header>

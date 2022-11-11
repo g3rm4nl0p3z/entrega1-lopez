@@ -1,14 +1,31 @@
-{% extends 'base/base_head.html' %}
+{% extends 'base/base.html' %}
 
 {% block bloque_titulo %}
-    Inicio
+    Sistema de administración de contenido | Inicio
 {% endblock bloque_titulo %}
 
-{% block bloque_nav_items %}
-    <li class="nav-item"><a class="nav-link active" href={% url 'home' %}>Inicio</a></li>
-    <li class="nav-item"><a class="nav-link" href={% url 'about' %}>Sobre mí</a></li>
-{% endblock bloque_nav_items %}
+{% block bloque_nav_item_home_active %}
+    active
+{% endblock bloque_nav_item_home_active %}
 
-{% block bloque_h1_header %}
-    Sistema de administración de contenido
-{% endblock bloque_h1_header %}
+{% block bloque_header %}
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-4">
+                    <h1 class="text-center display-4 fw-bolder">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.first_name %}
+                                ¡Bienvenido, {{ request.user.first_name }}!
+                            {% else %}
+                                ¡Bienvenido!
+                            {% endif %}
+                        {% else %}
+                            Sistema de administración de contenido
+                        {% endif %}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock bloque_header %}

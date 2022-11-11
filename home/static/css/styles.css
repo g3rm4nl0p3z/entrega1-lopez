@@ -236,7 +236,7 @@ sup {
 
 a {
   color: #0d6efd;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: #0a58ca;
@@ -3471,7 +3471,7 @@ textarea.form-control-lg {
 .btn-link {
   font-weight: 400;
   color: #0d6efd;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .btn-link:hover {
   color: #0a58ca;
@@ -11287,6 +11287,13 @@ textarea.form-control-lg {
   }
 }
 
+/*
+ * Estilos definidos por el desarrollador
+ * Masthead     : Encabezado de la página (Inicial)
+ * Testimonials : Se visualiza sobre la sección 'Sobre mí' y 'Perfil'
+ * Post         : Encabezado de la publicación (Post)
+ * Post-preview : Se visualiza sobre lista de publicaciones (Posts)
+ */
 header.masthead {
   position: relative;
   background-color: #343a40;
@@ -11298,12 +11305,10 @@ header.masthead {
 header.masthead:before {
   content: "";
   position: absolute;
-  background-color: #1c375e;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  opacity: 0.5;
 }
 header.masthead h1, header.masthead .h1 {
   font-size: 2rem;
@@ -11328,6 +11333,96 @@ header.masthead h1, header.masthead .h1 {
 .testimonials .testimonial-item img {
   max-width: 12rem;
   box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+header.post {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-top: calc(8rem + 57px);
+  padding-bottom: 8rem;
+  background: no-repeat center center;
+  background-color: #6c757d;
+  background-size: cover;
+  background-attachment: scroll;
+}
+header.post:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #212529;
+  opacity: 0.5;
+}
+header.post .post-heading {
+  color: #fff;
+}
+header.post .post-heading h1, header.post .post-heading .h1 {
+  font-size: 2.25rem;
+}
+header.post .post-heading .meta,
+header.post .post-heading .subheading {
+  line-height: 1.1;
+  display: block;
+}
+header.post .post-heading .subheading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.75rem 0 2rem;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+header.post .post-heading .meta {
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+header.post .post-heading .meta a {
+  color: #fff;
+}
+@media (min-width: 992px) {
+  header.post {
+    padding-top: 12.5rem;
+    padding-bottom: 12.5rem;
+  }
+  header.post .post-heading h1, header.post .post-heading .h1 {
+    font-size: 3.5rem;
+  }
+  header.post .post-heading .subheading {
+    font-size: 1.875rem;
+  }
+}
+
+.post-preview > a {
+  color: #212529;
+}
+.post-preview > a:focus, .post-preview > a:hover {
+  text-decoration: none;
+  color: #0085A1;
+}
+.post-preview > a > .post-title {
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+  margin-bottom: 0.625rem;
+}
+.post-preview > a > .post-subtitle {
+  font-weight: 300;
+  margin-bottom: 0.625rem;
+}
+.post-preview > .post-meta {
+  font-size: 1.125rem;
+  font-style: italic;
+  margin-top: 0;
+  color: #6c757d;
+}
+.post-preview > .post-meta > a {
+  text-decoration: none;
+}
+@media (min-width: 992px) {
+  .post-preview > a > .post-title {
+    font-size: 2.25rem;
+  }
 }
 
 footer.footer {

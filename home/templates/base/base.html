@@ -21,30 +21,36 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href={% url 'home' %}>Entrega Final - Germán López</a>
+                <a class="navbar-brand" href={% url 'home' %}>Administración de contenido</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_nav_item_home_active %}{% endblock bloque_nav_item_home_active %}" href={% url 'home' %}><i class="bi bi-house-door"></i> Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_nav_item_posts_active %}{% endblock bloque_nav_item_posts_active %}" href={% url 'ver_posts' %}><i class="bi bi-journals"></i> Posts</a></li>
+
                         {% block bloque_nav_items %}
                         {% endblock bloque_nav_items %}
+
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_buscar_active %}{% endblock bloque_buscar_active %}" href={% url 'buscar_posts' %}><i class="bi bi-search"></i> Buscar</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_about_active %}{% endblock bloque_about_active %}" href={% url 'about' %}><i class="bi bi-info-circle"></i> Sobre mí</a></li>
 
                         <!-- Usuario Logueado (Navbar-item y Dropdown) -->
                         <li class="nav-item dropdown">
                             {% if request.user.is_authenticated %}
-                                <li class="nav-item"><a class="nav-link" href="#">Posts</a></li>
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.username }}</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-circle"></i> {{ request.user.username }}</a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">Perfil</a>
-                                    <a class="dropdown-item" href="#!">Editar perfil</a>
+                                    <a class="dropdown-item" href={% url 'ver_perfil' %}><i class="bi bi-person"></i> Mi perfil</a>
+                                    <a class="dropdown-item" href={% url 'editar_perfil' %}><i class="bi bi-pencil"></i> Editar perfil</a>
+                                    <a class="dropdown-item" href={% url 'cambiar_password' %}><i class="bi bi-key"></i> Cambiar contraseña</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#!">Cerrar sesión</a>
+                                    <a class="dropdown-item" href={% url 'logout' %}><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a>
                                 </div>
                             {% else %}
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ingresar</a>
+                                <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">Iniciar sesión</a>
+                                    <a class="dropdown-item" href={% url 'login' %}><i class="bi bi-box-arrow-in-left"></i> Iniciar sesión</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#!">Registrarme</a>
+                                    <a class="dropdown-item" href={% url 'registrar' %}><i class="bi bi-person-plus"></i> Registrarme</a>
                                 </div>
                             {% endif %}
                         </li>
@@ -64,7 +70,7 @@
         <!-- Footer -->
         <footer class="footer bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Germán López 2022</p>
+                <p class="m-0 text-center text-white">Copyright &copy; Germán López - Entrega Final (2022)</p>
             </div>
         </footer>
 

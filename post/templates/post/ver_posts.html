@@ -1,0 +1,54 @@
+{% extends 'base/base_head.html' %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Posts
+{% endblock bloque_titulo %}
+
+{% block bloque_nav_item_posts_active %}
+    active
+{% endblock bloque_nav_item_posts_active %}
+
+{% block bloque_nav_items %}
+    {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'nuevo_post' %}><i class="bi bi-journal-richtext"></i> Nuevo</a></li>
+    {% endif %}
+{% endblock bloque_nav_items %}
+
+{% block bloque_h1_header %}
+    Posts
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Listado de publicaciones
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container px-4 px-lg-5">
+            {% if posts %}
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        {% for post in posts %}
+                            <!-- Post preview-->
+                            <div class="post-preview">
+                                <a href={% url 'ver_post' post.id %}>
+                                    <h2 class="post-title">{{ post.titulo }}</h2>
+                                    <h3 class="post-subtitle">{{ post.subtitulo }}</h3>
+                                </a>
+                                <p class="post-meta">
+                                    Posteado por {{ post.autor }} el {{ post.fecha_creacion }}.
+                                </p>
+                            </div>
+                            <!-- Divider-->
+                            <hr class="my-4"/>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="p-3 p-lg-4 lead fst-italic">
+                    <p>No existen posts para mostrar.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock bloque_contenido %}

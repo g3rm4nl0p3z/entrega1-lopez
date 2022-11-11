@@ -1,0 +1,68 @@
+{% extends 'base/base_head.html' %}
+{% load static %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Perfil
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Mi perfil
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Información de mi cuenta
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="testimonials text-center bg-light">
+        <div class="container">
+            <div class="row p-3">
+                <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        {% if request.user.userextension.avatar %}
+                            <img class="img-fluid rounded-circle mb-3" src= {{ request.user.userextension.avatar.url }} alt="Avatar"/>
+                        {% else %}
+                            <img class="img-fluid rounded-circle mb-3" src= {% static 'assets/img/blank-profile.jpg' %} alt="Sin avatar"/>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <table class="table fst-italic">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Username</th>
+                                <th scope="row">{{ request.user.username }}</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{{ request.user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Nombre</th>
+                                <td>{{ request.user.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Apellido</th>
+                                <td>{{ request.user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle">Descripción</th>
+                                <td>
+                                    {{ request.user.userextension.descripcion }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Link</th>
+                                <td>
+                                    <a href={{ request.user.userextension.link }}>
+                                        {{ request.user.userextension.link }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

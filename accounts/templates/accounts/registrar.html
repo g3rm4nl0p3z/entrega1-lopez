@@ -1,0 +1,29 @@
+{% extends 'base/base_head.html' %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Registro
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Registro
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Crear una nueva cuenta
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container">
+            <form class="p-3 p-lg-4" action={% url 'registrar' %} method="POST">
+                {% csrf_token %}
+                <table class="col-md-5 fst-italic">
+                    {{ formulario_registro.as_table }}
+                </table>
+                <div class="py-3 py-lg-4">
+                    <button class="btn btn-outline-primary fst-italic">Registrarme</button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

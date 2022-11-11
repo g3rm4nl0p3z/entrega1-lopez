@@ -1,0 +1,29 @@
+{% extends 'base/base_head.html' %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Login
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Iniciar sesión
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Ingresá con tu cuenta
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container">
+            <form class="p-3 p-lg-4" action={% url 'login' %} method="POST">
+                {% csrf_token %}
+                <table class="col-md-5 fst-italic">
+                    {{ formulario_login.as_table }}
+                </table>
+                <div class="py-3 py-lg-4">
+                    <button class="btn btn-outline-primary fst-italic">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

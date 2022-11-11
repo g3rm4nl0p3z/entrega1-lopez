@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Post
+{% endblock bloque_titulo %}
+
+{% block bloque_nav_items %}
+    <!-- Habilita modificación del post SÓLO para su autor -->
+    {% if request.user.is_authenticated and post.autor == request.user %}
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'editar_post' post.id %}><i class="bi bi-pencil"></i> Editar</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'borrar_post' post.id %}><i class="bi bi-trash"></i> Eliminar</a></li>
+    {% endif %}
+{% endblock bloque_nav_items %}
+
+<!-- Post Header -->
+{% block bloque_header %}
+    <header class="post" style="background-image: url('{{ post.imagen.url }}')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="post-heading">
+                        <h1>{{ post.titulo }}</h1>
+                        <h2 class="subheading">{{ post.subtitulo }}</h2>
+                        <span class="meta">
+                            Posteado por {{ post.autor }} el {{ post.fecha_creacion }}.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock bloque_header %}
+
+<!-- Post Content -->
+{% block bloque_contenido %}
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {{ post.contenido | safe }}
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock bloque_contenido %}
