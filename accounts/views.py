@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from accounts.forms import FormularioRegistro, FormularioEditarPerfil, FormularioCambiarPassword
-from accounts.models import UserExtension
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 
+from accounts.models import UserExtension
+from accounts.forms import FormularioRegistro, FormularioEditarPerfil, FormularioCambiarPassword
 
 def iniciar_sesion(request):
 
@@ -23,7 +23,7 @@ def iniciar_sesion(request):
     else:
         formulario_login = AuthenticationForm()
 
-    return render(request, 'accounts/login.html', { 'formulario_login':formulario_login })
+    return render(request, 'accounts/login.html', { 'formulario_login' : formulario_login })
 
 
 def registrar_cuenta(request):
@@ -41,7 +41,7 @@ def registrar_cuenta(request):
     else:
         formulario_registro = FormularioRegistro()
 
-    return render(request, 'accounts/registrar.html', { 'formulario_registro':formulario_registro })
+    return render(request, 'accounts/registrar.html', { 'formulario_registro' : formulario_registro })
 
 
 @login_required
@@ -84,16 +84,16 @@ def editar_perfil(request):
     else:
         formulario_editar_perfil = FormularioEditarPerfil(
             initial={
-                'email': request.user.email,
-                'first_name': request.user.first_name,
-                'last_name': request.user.last_name,
-                'avatar': request.user.userextension.avatar,
-                'descripcion': request.user.userextension.descripcion,
-                'link': request.user.userextension.link,
+                'email' : request.user.email,
+                'first_name' : request.user.first_name,
+                'last_name' : request.user.last_name,
+                'avatar' : request.user.userextension.avatar,
+                'descripcion' : request.user.userextension.descripcion,
+                'link' : request.user.userextension.link,
             }
         )
 
-    return render(request, 'accounts/editar_perfil.html', { 'formulario_editar_perfil':formulario_editar_perfil })
+    return render(request, 'accounts/editar_perfil.html', { 'formulario_editar_perfil' : formulario_editar_perfil })
 
 
 @login_required
@@ -108,4 +108,4 @@ def cambiar_password(request):
     else:
         formulario_cambio_password = FormularioCambiarPassword(user=request.user)
 
-    return render(request, 'accounts/cambiar_password.html', { 'formulario_cambio_password':formulario_cambio_password })
+    return render(request, 'accounts/cambiar_password.html', { 'formulario_cambio_password' : formulario_cambio_password })

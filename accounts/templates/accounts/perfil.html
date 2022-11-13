@@ -48,15 +48,19 @@
                             <tr>
                                 <th scope="row" class="align-middle">Descripción</th>
                                 <td>
-                                    {{ request.user.userextension.descripcion }}
+                                    {% if request.user.userextension.descripcion %}
+                                        {{ request.user.userextension.descripcion }}
+                                    {% endif %}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Link</th>
                                 <td>
-                                    <a href={{ request.user.userextension.link }}>
-                                        {{ request.user.userextension.link }}
-                                    </a>
+                                    {% if request.user.userextension.link %}
+                                        <a href={{ request.user.userextension.link }}>
+                                            {{ request.user.userextension.link }}
+                                        </a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         </tbody>

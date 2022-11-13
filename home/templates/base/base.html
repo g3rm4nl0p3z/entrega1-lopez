@@ -6,8 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            {% block bloque_titulo %}
-            {% endblock bloque_titulo %}
+            {% block bloque_titulo %}{% endblock bloque_titulo %}
         </title>
         <!-- Bootstrap icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -25,14 +24,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_nav_item_home_active %}{% endblock bloque_nav_item_home_active %}" href={% url 'home' %}><i class="bi bi-house-door"></i> Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_nav_item_posts_active %}{% endblock bloque_nav_item_posts_active %}" href={% url 'ver_posts' %}><i class="bi bi-journals"></i> Posts</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_home_active %}{% endblock bloque_home_active %}" href={% url 'home' %}><i class="bi bi-house-door"></i> Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_posts_active %}{% endblock bloque_posts_active %}" href={% url 'ver_posts' %}><i class="bi bi-journals"></i> Posts</a></li>
 
-                        {% block bloque_nav_items %}
-                        {% endblock bloque_nav_items %}
+                        {% block bloque_nav_items %}{% endblock bloque_nav_items %}
 
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_buscar_active %}{% endblock bloque_buscar_active %}" href={% url 'buscar_posts' %}><i class="bi bi-search"></i> Buscar</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_about_active %}{% endblock bloque_about_active %}" href={% url 'about' %}><i class="bi bi-info-circle"></i> Sobre mí</a></li>
+                        <!-- Funcionalidades de Chat (Usuario Logueado) -->
+                        {% if request.user.is_authenticated and not request.user.is_staff %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 {% block bloque_chat_active %}{% endblock bloque_chat_active %}" href={% url 'ver_chats' %}><i class="bi bi-chat"></i> Chat</a></li>
+
+                            {% block bloque_nav_items_chat %}{% endblock bloque_nav_items_chat %}
+                        {% endif %}
+
+                        {% block bloque_nav_item_sobre_mi %}{% endblock bloque_nav_item_sobre_mi %}
 
                         <!-- Usuario Logueado (Navbar-item y Dropdown) -->
                         <li class="nav-item dropdown">
@@ -60,12 +64,10 @@
         </nav>
 
         <!-- Header -->
-        {% block bloque_header %}
-        {% endblock bloque_header %}
+        {% block bloque_header %}{% endblock bloque_header %}
 
         <!-- Page Content -->
-        {% block bloque_contenido %}
-        {% endblock bloque_contenido %}
+        {% block bloque_contenido %}{% endblock bloque_contenido %}
 
         <!-- Footer -->
         <footer class="footer bg-dark">

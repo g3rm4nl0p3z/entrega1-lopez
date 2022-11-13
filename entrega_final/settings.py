@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'post.apps.PostConfig',
+    'mensajeria.apps.MensajeriaConfig',
     'ckeditor',
 ]
 

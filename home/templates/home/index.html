@@ -4,9 +4,13 @@
     Sistema de administración de contenido | Inicio
 {% endblock bloque_titulo %}
 
-{% block bloque_nav_item_home_active %}
+{% block bloque_home_active %}
     active
-{% endblock bloque_nav_item_home_active %}
+{% endblock bloque_home_active %}
+
+{% block bloque_nav_item_sobre_mi %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'about' %}><i class="bi bi-info-circle"></i> Sobre mí</a></li>
+{% endblock bloque_nav_item_sobre_mi %}
 
 {% block bloque_header %}
     <header class="masthead">

@@ -603,6 +603,12 @@ progress {
   height: auto;
 }
 
+.img-avatar {
+  width: 32px;
+  aspect-ratio: auto 32 / 32;
+  height: 32px;
+}
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
@@ -7939,6 +7945,10 @@ textarea.form-control-lg {
 
 .rounded-circle {
   border-radius: 50% !important;
+}
+
+.border-rounded {
+  border-radius: 25% !important;
 }
 
 .rounded-pill {

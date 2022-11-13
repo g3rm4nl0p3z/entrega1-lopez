@@ -1,0 +1,28 @@
+{% extends 'base/base_head.html' %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Iniciar chat
+{% endblock bloque_titulo %}
+
+{% block bloque_h1_header %}
+    Iniciar chat
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Estás a punto de iniciar una nueva conversación
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container px-4 px-lg-5">
+            <form class="p-3 p-lg-4 lead fst-italic" action={% url 'nuevo_chat' %} method="POST">
+                {% csrf_token %}
+                {{formulario_iniciar_chat.as_p}}
+                <div>
+                    <button class="btn btn-outline-primary fst-italic"><i class="bi bi-chat"></i> Iniciar</button>
+                    <a class="btn btn-outline-danger fst-italic" href={% url 'ver_chats' %} role="button"><i class="bi bi-x-circle"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

@@ -5,9 +5,9 @@
     Sistema de administración de contenido | Sobre mí
 {% endblock bloque_titulo %}
 
-{% block bloque_about_active %}
-    active
-{% endblock bloque_about_active %}
+{% block bloque_nav_item_sobre_mi %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 active" href={% url 'about' %}><i class="bi bi-info-circle"></i> Sobre mí</a></li>
+{% endblock bloque_nav_item_sobre_mi %}
 
 {% block bloque_h1_header %}
     Sobre mí
@@ -26,7 +26,7 @@
                         <img class="img-fluid rounded-circle mb-3" src= {% static 'assets/img/lopez.jpg' %} alt="Germán López"/>
                         <h5>Germán López</h5>
                         <p class="mb-0 fst-italic">
-                            "Soy de Río Cuarto, Córdoba y tengo 31 años. Soy desarrollador COBOL y PL/SQL, con 7 años de experiencia."
+                            "Soy de Río Cuarto, Córdoba, y tengo 31 años. Soy desarrollador COBOL y PL/SQL, con 7 años de experiencia."
                         </p>
                     </div>
                 </div>

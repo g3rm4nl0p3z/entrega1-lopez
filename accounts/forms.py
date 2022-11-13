@@ -1,7 +1,6 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
-from django import forms
-
 
 '''
     FORMULARIO FormularioRegistro:
@@ -21,7 +20,6 @@ class FormularioRegistro(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {k:'' for k in fields}
 
-
 '''
     FORMULARIO FormularioEditarPerfil:
     - Email: str
@@ -33,12 +31,12 @@ class FormularioRegistro(UserCreationForm):
 '''
 class FormularioEditarPerfil(forms.Form):
 
-    email       = forms.EmailField(required=True)
-    first_name  = forms.CharField(label='Nombre', required=False)
-    last_name   = forms.CharField(label='Apellido', required=False)
-    avatar      = forms.ImageField(required=False, widget=forms.ClearableFileInput)
-    descripcion = forms.CharField(max_length=255, required=False, widget=forms.Textarea)
-    link        = forms.URLField(max_length=100, required=False)
+    email       = forms.EmailField(required=True, widget=forms.EmailInput(attrs={ 'class' : 'form-control' }))
+    first_name  = forms.CharField(required=False, widget=forms.TextInput(attrs={ 'class' : 'form-control' }), label='Nombre')
+    last_name   = forms.CharField(required=False, widget=forms.TextInput(attrs={ 'class' : 'form-control' }), label='Apellido')
+    avatar      = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={ 'class' : 'form-control' }))
+    descripcion = forms.CharField(max_length=255, required=False, widget=forms.Textarea(attrs={ 'class' : 'form-control' }))
+    link        = forms.URLField(max_length=100, required=False, widget=forms.TextInput(attrs={ 'class' : 'form-control' }))
 
 
 '''
@@ -49,9 +47,9 @@ class FormularioEditarPerfil(forms.Form):
 '''
 class FormularioCambiarPassword(PasswordChangeForm):
 
-    old_password  = forms.CharField(label='Password actual', widget=forms.PasswordInput)
-    new_password1 = forms.CharField(label='Password nuevo', widget=forms.PasswordInput)
-    new_password2 = forms.CharField(label='Confirmar password', widget=forms.PasswordInput)
+    old_password  = forms.CharField(widget=forms.PasswordInput(attrs={ 'class' : 'form-control' }), label='Password actual')
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={ 'class' : 'form-control' }), label='Password nuevo')
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={ 'class' : 'form-control' }), label='Confirmar password')
 
     class Meta:
         model = User

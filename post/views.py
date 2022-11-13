@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 from post.models import Post
 from post.forms import FormularioBuscarPosts
 
@@ -12,7 +13,7 @@ from post.forms import FormularioBuscarPosts
 '''
 def ver_posts(request):
     posts = Post.objects.all().order_by('id')
-    return render(request, 'post/ver_posts.html', { 'posts':posts })
+    return render(request, 'post/ver_posts.html', { 'posts' : posts })
 
 
 def buscar_posts(request):
@@ -27,7 +28,7 @@ def buscar_posts(request):
 
     formulario_buscar_posts = FormularioBuscarPosts()
 
-    return render(request, 'post/buscar_posts.html', { 'formulario_buscar_posts':formulario_buscar_posts, 'posts':posts })
+    return render(request, 'post/buscar_posts.html', { 'formulario_buscar_posts' : formulario_buscar_posts, 'posts' : posts })
 
 '''
     CLASES BASADAS EN VISTAS (CBV):

@@ -1,0 +1,94 @@
+{% extends 'base/base_head.html' %}
+{% load static %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Chat
+{% endblock bloque_titulo %}
+
+{% block bloque_chat_active %}
+    active
+{% endblock bloque_chat_active %}
+
+{% block bloque_nav_items_chat %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'nuevo_chat' %}><i class="bi bi-chat-text"></i> Nuevo chat</a></li>
+{% endblock bloque_nav_items_chat %}
+
+{% block bloque_h1_header %}
+    Chats
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    Conversaciones iniciadas
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container p-3 p-lg-4">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <table class="table fst-italic">
+                        <thead>
+                            <tr>
+                                <th class="fw-bolder lead text-center" colspan="2">Conversaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if chats %}
+                                {% for chat in chats %}
+                                    <tr>
+                                        <td class="col-lg-2">
+                                            <div class="mx-3 mb-5 mb-lg-0">
+                                                {% if request.user == chat.user_chat_1 %}
+                                                    {% if chat.user_chat_2.userextension.avatar %}
+                                                        <img width="48" height="48" class="img-avatar rounded-circle" src= {{ chat.user_chat_2.userextension.avatar.url }} alt="Avatar"/>
+                                                    {% else %}
+                                                        <img width="48" height="48" class="img-avatar rounded-circle" src= {% static 'assets/img/blank-profile.jpg' %} alt="Sin avatar"/>
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if chat.user_chat_1.userextension.avatar %}
+                                                        <img width="48" height="48" class="img-avatar rounded-circle" src= {{ chat.user_chat_1.userextension.avatar.url }} alt="Avatar"/>
+                                                    {% else %}
+                                                        <img width="48" height="48" class="img-avatar rounded-circle" src= {% static 'assets/img/blank-profile.jpg' %} alt="Sin avatar"/>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td class="col-lg-10 post-preview">
+                                            <a href={% url 'ver_chat' chat.id %}>
+                                                {% if request.user == chat.user_chat_1 %}
+                                                    <h3 class="post-subtitle">
+                                                        {% if chat.user_chat_2.get_full_name %}
+                                                            {{ chat.user_chat_2.get_full_name }}
+                                                        {% else %}
+                                                            {{ chat.user_chat_2.username }}
+                                                        {% endif %}
+                                                    </h3>
+                                                {% else %}
+                                                    <h3 class="post-subtitle">
+                                                        {% if chat.user_chat_1.get_full_name %}
+                                                            {{ chat.user_chat_1.get_full_name }}
+                                                        {% else %}
+                                                            {{ chat.user_chat_1.username }}
+                                                        {% endif %}
+                                                    </h3>
+                                                {% endif %}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="post-subtitle lead">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">
+                                            No has iniciado ninguna conversación
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock bloque_contenido %}

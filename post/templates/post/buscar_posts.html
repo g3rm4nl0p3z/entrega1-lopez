@@ -4,9 +4,9 @@
     Sistema de administración de contenido | Búsqueda
 {% endblock bloque_titulo %}
 
-{% block bloque_buscar_active %}
-    active
-{% endblock bloque_buscar_active %}
+{% block bloque_nav_items %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 active" href={% url 'buscar_posts' %}><i class="bi bi-search"></i> Buscar</a></li>
+{% endblock bloque_nav_items %}
 
 {% block bloque_h1_header %}
     Búsqueda de publicaciones
@@ -50,7 +50,7 @@
                 </div>
             {% else %}
                 <div class="px-3 px-lg-4 pb-3 pb-lg-4 lead fst-italic">
-                    <p>No existen posts para mostrar.</p>
+                    <p>No se encontraron publicaciones con los datos ingresados.</p>
                 </div>
             {% endif %}
         </div>

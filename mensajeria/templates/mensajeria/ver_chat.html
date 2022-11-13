@@ -1,0 +1,99 @@
+{% extends 'base/base_head.html' %}
+{% load static %}
+
+{% block bloque_titulo %}
+    Sistema de administración de contenido | Mensajes
+{% endblock bloque_titulo %}
+
+{% block bloque_chat_active %}
+    active
+{% endblock bloque_chat_active %}
+
+{% block bloque_nav_items_chat %}
+    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'borrar_chat' chat.id %}><i class="bi bi-trash"></i> Borrar chat</a></li>
+{% endblock bloque_nav_items_chat %}
+
+{% block bloque_h1_header %}
+    Chats
+{% endblock bloque_h1_header %}
+
+{% block bloque_sub_header %}
+    {% if request.user == chat.user_chat_1 %}
+        <h3 class="post-subtitle">
+            {% if chat.user_chat_2.get_full_name %}
+                Conversación con {{ chat.user_chat_2.get_full_name }}
+            {% else %}
+                Conversación con {{ chat.user_chat_2.username }}
+            {% endif %}
+        </h3>
+    {% else %}
+        <h3 class="post-subtitle">
+            {% if chat.user_chat_1.get_full_name %}
+                Conversación con {{ chat.user_chat_1.get_full_name }}
+            {% else %}
+                Conversación con {{ chat.user_chat_1.username }}
+            {% endif %}
+        </h3>
+    {% endif %}
+{% endblock bloque_sub_header %}
+
+{% block bloque_contenido %}
+    <section class="bg-light">
+        <div class="container p-3 p-lg-4">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <table class="table">
+                        <tbody>
+                            {% if mensajes %}
+                                {% for mensaje in mensajes %}
+                                    <tr>
+                                        <td>
+                                            {% if request.user != mensaje.de_user %}
+                                                <div class="d-flex flex-row pt-1 pt-lg-1">
+                                                    <p>{{ mensaje.contenido }}</p>
+                                                </div>
+                                            {% else %}
+                                                <div class="d-flex flex-row-reverse pt-1 pt-lg-1">
+                                                    <p>{{ mensaje.contenido }}</p>
+                                                </div>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="">
+                                            {% if request.user != mensaje.de_user %}
+                                                <p class="d-flex flex-row form-text">{{ mensaje.fecha_hora }}</p>
+                                            {% else %}
+                                                <p class="d-flex flex-row-reverse form-text">{{ mensaje.fecha_hora }}</p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="post-subtitle lead">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">
+                                            Has iniciado una nueva conversación
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <form action={% url 'ver_chat' chat.id %} method='POST'>
+                        {% csrf_token %}
+                        <table class="d-flex flex-row-reverse pt-2 pt-lg-2">
+                            {{ formulario_envio_mensaje.as_table }}
+                        </table>
+                        <div class="d-flex flex-row-reverse pt-2 ps-2 pt-lg-2">
+                            <button class="btn btn-outline-primary fst-italic"><i class="bi bi-chat-dots"></i> Enviar</button>
+                            <a class="btn btn-outline-danger fst-italic" href={% url 'ver_chats' %} role="button"><i class="bi bi-arrow-left-circle"></i> Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock bloque_contenido %}
