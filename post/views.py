@@ -20,7 +20,7 @@ def buscar_posts(request):
     titulo = request.GET.get('titulo', None)
 
     if titulo:
-        posts = Post.objects.filter(titulo__startswith=titulo)
+        posts = Post.objects.filter(titulo__icontains=titulo)
     else:
         posts = Post.objects.all()
 
